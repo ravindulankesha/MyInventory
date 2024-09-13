@@ -5,9 +5,9 @@ use App\Http\Controllers\InventoryController;
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('homepage');
-});
+// Route::get('/', function () {
+//     return view('homepage');
+// });
 
 Route::get('/register', function () {
     return view('registerView');
@@ -29,7 +29,7 @@ Route::get('/fillStock', function () {
     return view('fillStockForm');
 });
 
-Route::get('/dashboard', function () {
+Route::get('/', function () {
     return view('landingpage');
 })->name('home');
 
@@ -48,6 +48,16 @@ Route::get('/fillStock', [InventoryController::class, 'loadInventories'])->name(
 Route::post('/addUnits', [InventoryController::class, 'addUnits'])->name('addUnits');
 
 Route::post('/supplyInventory', [InventoryController::class, 'supply'])->name('supplyInventory');
+
+Route::get('/viewInventories', [InventoryController::class, 'view'])->name('viewInventories');
+
+Route::delete('/inventories/{inventoryItem}', [InventoryController::class, 'destroy'])->name('inventories.destroy');
+
+Route::get('/inventories/{inventoryItem}/edit', [InventoryController::class, 'edit'])->name('inventories.edit');
+
+Route::put('/inventories/{inventoryItem}', [InventoryController::class, 'update'])->name('inventories.update');
+
+Route::get('/chartData',[InventoryController::class, 'loadChartData'])->name('getChartData');
 
 
 

@@ -78,4 +78,48 @@ class InventoryController extends Controller
         Stock::where('inventory_item_id',$item_id)->decrement('total_quantity',$quantity_taken);
         return redirect()->route('home');
     }
+
+    public function view(Request $request){
+        $inventories=inventories::get();
+        return view('viewInventories',["inventories" => $inventories]);
+    }
+
+    public function destroy($id)
+    {
+        inventories::where('id',$id)->delete();
+        return redirect()->route('viewInventories');
+    }
+
+    public function edit($id){
+        $editItem=inventories::where('id',$id)->get();
+        return view('editInventory',["inventories" => $editItem]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validation_info=$request->validate([
+            'item_name' => 'required',
+            'item_description' => 'required',
+            'quantity_per_unit' => 'required|numeric|min:1'
+        ]);
+
+        inventories::where('id',$id)->update([
+            'item_name' => $request->item_name,
+            'item_description' => $request->item_description,
+            'quantity_per_unit' => $request->quantity_per_unit
+        ]);
+
+        return redirect()->route('viewInventories');
+    }
+
+    public function loadChartData(){
+        $stock=Stock::with('inventories')->get();
+        $values= [];
+        $labels= [];
+        foreach($stock as $key=>$value){
+            array_push($values, $value['total_quantity']);
+            array_push($labels, $value['inventories']['item_name']);
+        }
+        return  response()->json(['data'=>$values,'labels'=>$labels]);
+    }
 }

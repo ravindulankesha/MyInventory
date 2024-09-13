@@ -45,7 +45,6 @@ class InventoryController extends Controller
     public function itemStock(Request $request){
         $item_id = $request->item_id;
         $stock=Stock::select('total_quantity')->where('inventory_item_id',$item_id)->get();
-        // $stock=Stock::get();
         return  response()->json(['stock'=>$stock]);
     }
 

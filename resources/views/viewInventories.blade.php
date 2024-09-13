@@ -1,54 +1,7 @@
-<!-- <!DOCTYPE html>
-<html>
-    <head>
-        <title>Weerathunga Garments</title>
-    </head>  
-    <body>
-        <h1>WEERATHUNGA GARMENTS</h1>
-        <h2>Inventory Management System</h2>
-        <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Quantity Per Unit</th>
-                <th>Edit Action</th>
-                <th>Delete Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($inventories as $item)
-            <tr>
-                <td>{{ $item->id }}</td>
-                <td>{{ $item->item_name }}</td>
-                <td>{{ $item->item_description }}</td>
-                <td>{{ $item->quantity_per_unit }}</td>
-                <td>
-                    <a href="{{ route('inventories.edit', $item->id) }}">Edit</a>
-                </td>
-                <td>
-                    <form action="{{ route('inventories.destroy', $item->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-    <a href="{{route('home')}}">
-        Back
-    </a>
-    </body> 
-</html> -->
-
 <!DOCTYPE html>
 <html>
     <head>
         <title>Weerathunga Garments</title>
-        <!-- Add Tailwind CSS CDN -->
         <script src="https://cdn.tailwindcss.com"></script>
     </head>  
     <body class="bg-gray-100 p-6">

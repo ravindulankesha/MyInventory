@@ -5,10 +5,6 @@ use App\Http\Controllers\InventoryController;
 
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('homepage');
-// });
-
 Route::get('/register', function () {
     return view('registerView');
 });
@@ -20,10 +16,6 @@ Route::get('/login', function () {
 Route::get('/addInventory', function () {
     return view('newInventoryForm');
 });
-
-// Route::get('/supplyForm', function () {
-//     return view('inventoriesSupplyForm');
-// });
 
 Route::get('/fillStock', function () {
     return view('fillStockForm');
